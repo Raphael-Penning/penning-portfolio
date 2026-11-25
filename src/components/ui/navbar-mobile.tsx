@@ -43,7 +43,7 @@ export function NavbarMobile({
           <path d="M18 6 6 18M6 6l12 12" />
         </svg>
       </summary>
-      <div className="absolute inset-x-0 top-full border-b border-line bg-bg/95 px-4 pt-2 pb-6 shadow-[0_24px_48px_-16px_rgb(0_0_0/0.8)] backdrop-blur-xl sm:px-6">
+      <div className="absolute inset-x-0 top-full border-b border-line bg-surface px-4 pt-2 pb-6 shadow-[0_24px_48px_-16px_rgb(0_0_0/0.35)] sm:px-6">
         {children}
       </div>
       <DetailsCloser />

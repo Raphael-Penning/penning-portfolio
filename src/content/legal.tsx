@@ -283,7 +283,7 @@ function PrivacyDe() {
 
       <H2>Schriften</H2>
       <p>
-        Die verwendeten Schriften (Geist und Geist Mono) werden beim Erstellen der Website
+        Die verwendeten Schriften (IBM Plex Sans und JetBrains Mono) werden beim Erstellen der Website
         heruntergeladen und vom eigenen Server ausgeliefert. Beim Besuch der Website besteht keine
         Verbindung zu Google oder anderen Schriftanbietern.
       </p>
@@ -401,7 +401,7 @@ function PrivacyEn() {
 
       <H2>Fonts</H2>
       <p>
-        The fonts used (Geist and Geist Mono) are downloaded when the website is built and served
+        The fonts used (IBM Plex Sans and JetBrains Mono) are downloaded when the website is built and served
         from our own server. Visiting the website creates no connection to Google or other font
         providers.
       </p>
