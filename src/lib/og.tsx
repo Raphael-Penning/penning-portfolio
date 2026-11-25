@@ -5,13 +5,13 @@ export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
 
 const colors = {
-  bg: "#07090a",
-  fg: "#e8efec",
-  muted: "#94a19c",
-  line: "#222a2e",
-  surface: "#0e1113",
-  accent: "#34d399",
-  tile: "#047857",
+  bg: "#08090b",
+  fg: "#eceef3",
+  muted: "#9ca3b2",
+  line: "#23262f",
+  surface: "#0f1115",
+  accent: "#60a5fa",
+  tile: "#2563eb",
   ok: "#22c55e",
 };
 
@@ -38,7 +38,7 @@ export function ogImage({ title, sub, prompt }: { title: string; sub: string; pr
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: `radial-gradient(ellipse 80% 60% at 50% 0%, rgba(52,211,153,0.22), transparent 70%), ${colors.bg}`,
+          background: `radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.28), transparent 70%), ${colors.bg}`,
           color: colors.fg,
           fontFamily: "sans-serif",
         }}

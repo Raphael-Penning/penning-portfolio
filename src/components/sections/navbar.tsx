@@ -19,7 +19,7 @@ export function LanguageSwitch({
   return (
     <nav
       aria-label={t.languageLabel}
-      className={cx("flex items-center gap-0.5 rounded-full border border-line p-0.5", className)}
+      className={cx("flex items-center gap-0.5 rounded-full border border-line bg-surface p-1", className)}
     >
       {locales.map((l) => {
         const current = l === lang;
@@ -32,9 +32,9 @@ export function LanguageSwitch({
             aria-current={current ? "page" : undefined}
             title={t.languages[l]}
             className={cx(
-              "rounded-full px-2.5 py-1 font-mono text-[11px] tracking-wider uppercase transition-colors",
+              "inline-flex h-8 min-w-10 items-center justify-center rounded-full px-2.5 font-mono text-xs tracking-wider uppercase transition-colors duration-200",
               focusRing,
-              current ? "bg-surface-2 text-fg" : "text-subtle hover:text-fg",
+              current ? "bg-accent-strong text-white" : "text-muted hover:text-fg",
             )}
           >
             <span aria-hidden>{l}</span>
@@ -46,22 +46,20 @@ export function LanguageSwitch({
   );
 }
 
-function Brand({ lang }: { lang: Locale }) {
+export function Brand({ lang }: { lang: Locale }) {
   return (
     <a
       href={`/${lang}`}
       aria-label={pick(nav, lang).homeLabel}
-      className="flex items-center gap-2.5 rounded-md font-semibold tracking-tight text-fg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+      className="flex min-h-11 items-center gap-2.5 rounded-md font-semibold tracking-tight text-fg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
     >
       <LogoMark />
       <span>
-        raphael<span className="text-accent">.</span>penning
+        Raphael Penning
       </span>
     </a>
   );
 }
-
-export { Brand };
 
 export function Navbar({ lang, alternates }: { lang: Locale; alternates?: Alternates }) {
   const t = pick(nav, lang);
@@ -71,24 +69,24 @@ export function Navbar({ lang, alternates }: { lang: Locale; alternates?: Altern
       target="_blank"
       rel="noopener noreferrer me"
       aria-label={t.github}
-      className={cx("rounded-md p-2 text-muted transition-colors hover:text-fg", focusRing)}
+      className={cx("inline-flex size-11 items-center justify-center rounded-full text-muted transition-colors duration-200 hover:bg-surface-2 hover:text-fg", focusRing)}
     >
       <GitHubIcon />
     </a>
   );
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/70 bg-bg/70 backdrop-blur-xl supports-[backdrop-filter]:bg-bg/55">
-      <Container className="flex h-16 items-center gap-4">
+    <header className="sticky top-0 z-50 border-b border-line/80 bg-bg/75 backdrop-blur-xl supports-[backdrop-filter]:bg-bg/60">
+      <Container className="flex h-16 items-center gap-3">
         <Brand lang={lang} />
 
-        <nav aria-label={t.mainNavLabel} className="ml-auto hidden md:block">
-          <ul className="flex items-center gap-1">
+        <nav aria-label={t.mainNavLabel} className="mx-auto hidden md:block">
+          <ul className="flex items-center gap-1 rounded-full border border-line bg-surface/80 p-1">
             {t.links.map((link) => (
               <li key={link.href}>
                 <a
                   href={anchor(link.href, lang)}
-                  className={cx("rounded-md px-3 py-2 text-sm text-muted transition-colors hover:text-fg", focusRing)}
+                  className={cx("inline-flex h-9 items-center rounded-full px-4 text-sm text-muted transition-colors duration-200 hover:bg-surface-2 hover:text-fg", focusRing)}
                 >
                   {link.label}
                 </a>
@@ -100,16 +98,19 @@ export function Navbar({ lang, alternates }: { lang: Locale; alternates?: Altern
         <div className="hidden items-center gap-2 md:flex">
           <LanguageSwitch lang={lang} hrefs={alternates} />
           {githubLink}
+          <ButtonLink href={anchor("#contact", lang)} size="sm">
+            {t.contact}
+          </ButtonLink>
         </div>
 
         <NavbarMobile openLabel={t.openMenu} closeLabel={t.closeMenu}>
           <nav aria-label={t.mainNavLabel}>
             <ul className="flex flex-col">
-              {t.links.map((link) => (
+              {[...t.links, { href: "#contact", label: t.contact }].map((link) => (
                 <li key={link.href}>
                   <a
                     href={anchor(link.href, lang)}
-                    className={cx("block rounded-lg px-3 py-3 text-base text-muted transition-colors hover:bg-surface-2 hover:text-fg", focusRing)}
+                    className={cx("flex min-h-12 items-center rounded-xl px-3 text-base text-muted transition-colors hover:bg-surface-2 hover:text-fg", focusRing)}
                   >
                     {link.label}
                   </a>
@@ -122,7 +123,7 @@ export function Navbar({ lang, alternates }: { lang: Locale; alternates?: Altern
             {githubLink}
           </div>
           <ButtonLink href={`mailto:${site.email}`} className="mt-4 w-full">
-            {t.contact}
+            {site.email}
           </ButtonLink>
         </NavbarMobile>
       </Container>

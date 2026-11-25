@@ -45,7 +45,7 @@ export function CopyButton({ text, labels }: { text: string; labels: Labels }) {
         type="button"
         onClick={onCopy}
         aria-label={labels.aria}
-        className="inline-flex h-7 items-center gap-1.5 rounded-md border border-line bg-bg/60 px-2.5 font-mono text-[11px] text-muted transition-colors hover:border-line-strong hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        className="inline-flex h-10 items-center gap-2 rounded-full border border-line-strong bg-surface px-4 font-mono text-xs text-muted transition-colors duration-200 hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         {state === "copied" ? (
           <svg viewBox="0 0 24 24" className="size-3.5 text-ok" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>

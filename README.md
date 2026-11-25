@@ -1,6 +1,6 @@
 # raphael-penning.de
 
-Persönliches Portfolio von Raphael Penning – Fachinformatiker für Systemintegration (Azubi), in der Freizeit Entwickler & Admin. Zweisprachig (DE/EN), gebaut mit Next.js 16, React 19 und Tailwind CSS 4.
+Persönliches Portfolio von Raphael Penning – Fachinformatiker für Systemintegration (Azubi), in der Freizeit Entwickler & Admin. Zweisprachig (DE/EN), Bento-Layout mit Hell/Dunkel-Modus nach System, gebaut mit Next.js 16, React 19 und Tailwind CSS 4.
 
 ## Entwicklung
 

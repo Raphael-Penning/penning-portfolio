@@ -1,22 +1,30 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import { hasLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { nav } from "@/content/home";
 import { Analytics } from "@/components/analytics";
 import "../globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+const jetbrainsMono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"], display: "swap" });
 
 export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
 
 export const viewport: Viewport = {
-  themeColor: "#07090a",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f7fa" },
+    { media: "(prefers-color-scheme: dark)", color: "#08090b" },
+  ],
+  colorScheme: "light dark",
 };
 
 /** Site-wide defaults; every page sets its own title, canonical and hreflang. */
@@ -46,7 +54,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   return (
-    <html lang={lang} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang={lang} className={`${plexSans.variable} ${jetbrainsMono.variable} antialiased`}>
       <head>
         <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
         <link rel="me" href={site.github} />

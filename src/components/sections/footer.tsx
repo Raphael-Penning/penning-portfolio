@@ -5,22 +5,21 @@ import { footer } from "@/content/home";
 import { Container, cx, focusRing } from "@/components/ui/primitives";
 import { Brand, LanguageSwitch } from "./navbar";
 
-const linkClass = cx("rounded-sm text-sm text-muted transition-colors hover:text-fg", focusRing);
+const linkClass = cx(
+  "inline-flex min-h-11 items-center rounded-sm text-sm text-muted transition-colors duration-200 hover:text-fg",
+  focusRing,
+);
 
 export function Footer({ lang, alternates }: { lang: Locale; alternates?: Alternates }) {
   const t = pick(footer, lang);
   return (
-    <footer className="relative border-t border-line">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
-      />
-      <Container className="flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-col gap-3">
+    <footer className="border-t border-line bg-surface">
+      <Container className="flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-1">
           <Brand lang={lang} />
           <p className="text-xs text-subtle">{t.copyright}</p>
         </div>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
           <a href={legalPath("imprint", lang)} className={linkClass}>
             {t.imprint}
           </a>

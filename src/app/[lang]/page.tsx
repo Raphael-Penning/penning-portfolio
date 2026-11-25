@@ -7,7 +7,7 @@ import { homeJsonLd } from "@/lib/structured-data";
 import { meta } from "@/content/home";
 import { JsonLd } from "@/components/json-ld";
 import { Navbar } from "@/components/sections/navbar";
-import { Hero } from "@/components/sections/hero";
+import { Intro } from "@/components/sections/intro";
 import { About } from "@/components/sections/about";
 import { Projects } from "@/components/sections/projects";
 import { Skills } from "@/components/sections/skills";
@@ -34,9 +34,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <JsonLd nodes={homeJsonLd(lang)} />
       <Navbar lang={lang} />
       <main id="main">
-        <Hero lang={lang} />
-        <About lang={lang} />
+        <Intro lang={lang} />
         <Projects lang={lang} />
+        <About lang={lang} />
         <Skills lang={lang} />
         <Contact lang={lang} />
       </main>
