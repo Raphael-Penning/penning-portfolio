@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# raphael-penning.de
 
-## Getting Started
+Persönliches Portfolio von Raphael Penning – Fachinformatiker für Systemintegration (Azubi), in der Freizeit Entwickler & Admin. Zweisprachig (DE/EN), gebaut mit Next.js 16, React 19 und Tailwind CSS 4.
 
-First, run the development server:
+## Entwicklung
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`pnpm build && pnpm start` baut und startet die Produktionsversion (`output: "standalone"`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Konfiguration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Alle Variablen sind optional, siehe [`.env.example`](.env.example):
 
-## Learn More
+| Variable | Zweck |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Basis-URL für Canonicals, Sitemap und Open Graph (Standard: `https://raphael-penning.de`) |
+| `UMAMI_WEBSITE_ID` | Aktiviert Umami-Reichweitenmessung; ohne ID kein Tracking, Datenschutzerklärung passt sich an |
+| `UMAMI_URL`, `UMAMI_DOMAINS` | Umami-Instanz und gezählte Hostnamen |
+| `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION` | Verifizierungs-Meta-Tags für Search Console / Bing |
 
-To learn more about Next.js, take a look at the following resources:
+## SEO
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Lokalisierte Routen `/de` und `/en` mit `hreflang`, `x-default` und Canonical; `/` leitet nach `Accept-Language` weiter
+- Echte 404 für unbekannte Pfade (kein Soft-404)
+- JSON-LD: `ProfilePage`, `Person`, `WebSite`, `SoftwareApplication`/`SoftwareSourceCode` (OpenStatusPage), `BreadcrumbList`
+- Dynamische Open-Graph-Bilder pro Sprache, `robots.txt`, Sitemap-Index mit hreflang, `llms.txt`, Web-Manifest
+- Selbst gehostete Schriften, optimierte Bilder (AVIF/WebP), Security-Header, funktioniert ohne JavaScript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Inhalte
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Texte: [`src/content/home.ts`](src/content/home.ts)
+- Impressum & Datenschutz: [`src/content/legal.tsx`](src/content/legal.tsx), Anbieterdaten in [`src/data/legal.ts`](src/data/legal.ts)
+- Stammdaten (Domain, Mail, Links): [`src/lib/site.ts`](src/lib/site.ts)

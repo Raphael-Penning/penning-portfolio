@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/*
+ * Design tokens — dark, technical, terminal-flavoured.
+ * Accent is the green of a healthy service; contrast pairs meet WCAG 2.2 AA on bg/surface.
+ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: #07090a;
+  --color-surface: #0e1113;
+  --color-surface-2: #151a1d;
+  --color-line: #222a2e;
+  --color-line-strong: #33403f;
+  --color-fg: #e8efec;
+  --color-muted: #94a19c;
+  --color-subtle: #7f8c87;
+
+  --color-accent: #34d399;
+  --color-accent-strong: #047857;
+  --color-accent-deep: #065f46;
+  --color-accent-soft: rgb(52 211 153 / 0.12);
+
+  --color-ok: #22c55e;
+  --color-warn: #eab308;
+  --color-info: #60a5fa;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --animate-pulse-dot: pulse-dot 2.4s ease-in-out infinite;
+  --animate-blink: blink 1.1s steps(2, start) infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(34 197 94 / 0.55); }
+  50% { box-shadow: 0 0 0 6px rgb(34 197 94 / 0); }
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgb(52 211 153 / 0.3);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 40%, transparent);
+}
+
+.mask-radial {
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 25%, #a3b1ab 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Long-form text on the legal pages */
+.legal {
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+.legal h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-fg);
+  letter-spacing: -0.01em;
+}
+.legal h2:first-child {
+  margin-top: 0;
+}
+.legal p,
+.legal address,
+.legal ul {
+  margin-top: 0.75rem;
+}
+.legal ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.legal li + li {
+  margin-top: 0.25rem;
+}
+.legal a {
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-decoration-color: var(--color-line-strong);
+  text-underline-offset: 4px;
+}
+.legal a:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* Privacy policy: numbered headings via a counter, so optional sections renumber themselves */
+.legal-numbered {
+  counter-reset: legal-section;
+}
+.legal-numbered > h2::before {
+  counter-increment: legal-section;
+  content: counter(legal-section) ". ";
 }
